@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="hb_config">
+    <bean id="sessionFactory"
+      class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource"
+          ref="dataSource"/>
+        <property name="packagesToScan"
+          value="com.baeldung.hibernate.bootstrap.model"/>
+        <property name="hibernateProperties">
+            <props>
+                <!-- <prop key="hibernate.hbm2ddl.auto">
+                    create-drop
+                </prop> -->
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.H2Dialect
+                </prop>
+            </props>
+        </property>
+    </bean>
+ 
+    <bean id="dataSource"
+      class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/webdb?useSSL=false&amp;serverTimezone=UTC&amp;DB_CLOSE_DELAY=-1"/>
+        <property name="username" value="root"/>
+        <property name="password" value="stark1234!"/>
+    </bean>
+ 
+    <bean id="txManager"
+      class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <annotation-driven transaction-manager="transactionManager"/>
+</beans>
