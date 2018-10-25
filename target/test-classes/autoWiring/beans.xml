@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<bean id="employeeService" class="autoWiring.implement.EmployeeServiceImpl" autowire="byName">
+	</bean>
+	
+	<bean id="employeeDao" class="autoWiring.implement.EmployeeDaoImpl">
+	</bean>
+	
+	
+	<!-- bean 의존성을 위한 오토 와이어링 -->
+	
+	<!-- d오토와이어링 사용 안함....명시적으로 빈 참조를 함. -->
+	<!-- <bean id="employeeService" class="autoWiring.implement.EmployeeServiceImpl" autowire="autowire-type"/> -->
+	<!-- 
+	<bean id="employeeService" class="autoWiring.implement.EmployeeServiceImpl">
+		<property name="employeeDao" ref="employeeDaoBean"></property>
+	</bean>
+	
+	<bean name="employeeDaoBean" class="autoWiring.implement.EmployeeServiceImpl">
+	</bean>
+	 -->
+	
+	
+	<!-- byName 을 활용한 AW -->
+	<!-- 두가지 빈이 있을 때 오토와이어링 byName 하면 클래스 속성명과 동일한 빈객체가 자동으로 연결된다. -->
+	<!-- 같은 이름을 가진 bean이 없을 경우 에러를 발생시킨다. -->
+	<!-- 
+	<bean id="employeeService" class="autoWiring.implement.EmployeeServiceImpl" autowire="byName">
+	</bean>
+	
+	<bean name="employeeDao" class="autoWiring.implement.EmployeeServiceImpl">
+	</bean>
+	 -->
+	
+	<!-- byName 을 활용한 AW -->
+	<!-- 두가지 빈이 있을 때 오토와이어링 byName 하면 클래스의 속성타입과 동일한 빈객체가 자동으로 연결된다. -->
+	<!-- 같은 이름을 가진 bean이 없을 경우 에러를 발생시킨다. -->
+	
+	<!-- byType을 이용한 오토와이어 -->
+	<!-- 
+	<bean id="employeeService" class="autoWiring.implement.EmployeeServiceImpl" autowire="byType">
+	</bean>
+	<bean name="employeeDaoㄴㅁㅎㄴㅇㅀㄴㅇㄹ" class="autoWiring.implement.EmployeeServiceImpl">
+	</bean>
+	 -->
+	
+	<!-- 생성자를 활용한 AW -->
+	<!-- 생성자 인자에 사용된 클래스타입을 찾아 byType을 사용해 모든 생성자 인자에 오토와이어링 수행 -->
+	<!-- 만약 컨테이너에 생성자 인자 타입과 정확히 같은 빈이 없을경우 치명적 오류 발생 -->
+	<!-- 생성자가 정의되어 있지 않아도 오류 발생할 듯... -->
+	
+</beans>

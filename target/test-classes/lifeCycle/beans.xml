@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="default" class="lifeCycle.BeanC">
+	</bean>
+	
+	<bean id="init-method" class="lifeCycle.BeanC" init-method="myInit" destroy-method="myCleanUp">
+	</bean>
+	
+	
+	
+	<!-- xml 기반 설정 메타데이터의 경우, 인자가 없는 메서드 명을 명시하기 위해 init-method 속성을 사용가능 -->
+	<!-- 인스턴스화 되는 즉시 빈에서 호출 -->
+</beans>

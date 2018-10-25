@@ -1,8 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<context:annotation-config/>
+	<context:component-scan base-package="com.flapper.stark"/>
+	<!-- <context:property-placeholder location="hibernate.properties"/> -->
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/webdb?useSSL=false&amp;serverTimezone=UTC&amp;DB_CLOSE_DELAY=-1"/>
+		<property name="username" value="root"/>
+		<property name="password" value="stark1234!"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        
+        <!-- 어노테이션 클래스들에 대한 클래스 명을 정의 -->
+        <!-- 주의 !!!! : value 속성으로 string을 넣는 것! -->
+        <property name="annotatedClasses" value="com.flapper.stark.model.UserVO"/>
+        
+        <!-- 기타 하이버네이트 속성들을 정의 -->
+        <property name="hibernateProperties">
+            <props>
+            	<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            	<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            	<prop key="hibernate.show_sql">true</prop>
+            	<prop key="pool_size">3</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transectionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> -->
 </beans>
+
+<!-- 
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	Root Context: defines shared resources visible to all other web components
+	
+	<context:annotation-config/>
+	<context:component-scan base-package="com.flapper.stark"/>
+	<context:property-placeholder location="hibernate.properties"/>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.id}"/>
+		<property name="password" value="${jdbc.pw}"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        
+        어노테이션 클래스들에 대한 클래스 명을 정의
+        주의 !!!! : value 속성으로 string을 넣는 것!
+        <property name="annotatedClasses" value="com.flapper.stark.model.MusicVO"/>
+        
+        기타 하이버네이트 속성들을 정의
+        <property name="hibernateProperties">
+            <props>
+            	<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            	<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            	<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            	<prop key="pool_size">${hibernate.pool_size}</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transectionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+</beans>
+ -->

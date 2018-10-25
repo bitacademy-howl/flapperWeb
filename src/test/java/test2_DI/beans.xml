@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- <bean id="empServiceBean" class="test2_DI.EmployeeServiceImpl"></bean> -->
+	<bean id="employeeService" class="test2_DI.EmployeeServiceImpl">
+		<constructor-arg ref="employeeDao"/>
+	</bean>
+	
+	<bean id="employeeDao" class="test2_DI.EmployeeDaoImpl"></bean>
+	
+	<bean id="employee" class="test2_DI.Employee">
+		<constructor-arg value="이희웅" index = "0"></constructor-arg>
+		<constructor-arg value="35" index = "1"></constructor-arg>
+		<constructor-arg value="1" index = "2"></constructor-arg>
+	</bean>
+	
+	
+	<bean id="employee2" class="test2_DI.Employee">
+	<!-- <property> 태그는 설정되어있는 세터를 호출하여 값을 설정 -->
+		<property name="name" value="이희웅 아님"/>
+	</bean>
+	
+	<bean name="user" class="test2_DI.User">
+		<property name="lists">
+			<list>
+				<value>34</value>
+				<value>34</value>
+				<value>24</value>
+			</list>
+		</property>
+		
+		<property name="sets">
+			<set>
+				<value>강호동</value>
+				<value>김영철</value>
+				<value>조세호</value>	
+			</set>
+		</property>
+		
+		<property name="maps">
+			<map>
+				<entry key="강호동" value="54"/>
+				<entry key="김영철" value="43"/>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="outerBean" class="test2_DI.OuterBeanClass">
+		<property name="inner">
+			<bean class="test2_DI.InnerBeanClass">
+				<property name="message" value="남은 잔액은 : "/>
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

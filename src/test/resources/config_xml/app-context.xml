@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+</beans> -->
+
+<!-- 
+	<context:annotation-config/>
+	<context:component-scan base-package="com.flapper.stark.DAO"/>
+	
+	주의!!! 찾아볼 것!!! properties 파일 사용해서 설정하는게 권장되지 않는다는 말이 있었음.
+	<context:property-placeholder location="classpath:META-INF/config_xml/hibernate.properties"/>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.id}"/>
+		<property name="password" value="${jdbc.pw}"/>
+	</bean>
+	<bean id="sessionFactory" class="null">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan"
+          value="com.baeldung.hibernate.bootstrap.model"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">
+                    create-drop
+                </prop>
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.H2Dialect
+                </prop>
+            </props>
+        </property>
+    </bean>
+    
+	<bean id="sessionFactory" class="sessionf">
+		<property name="driverClassName" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.url}"/>
+	</bean>
+ -->

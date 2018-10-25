@@ -11,6 +11,7 @@
   margin-bottom: 20px;
   border: 1px solid #bcbcbc;
 }
+
 #jb-sidebar-left {
   width: 160px;
   padding: 20px;
@@ -38,3 +39,6 @@
   padding: 20px;
   border: 1px solid #bcbcbc;
 }
+
+#jb-header.inner_wrap_v1:after {content:"";display:block;clear:both;}
+#header_wrap.sub_v3 .inner_wrap_v3,

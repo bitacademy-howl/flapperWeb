@@ -7,45 +7,30 @@
 	<name>flapperWeb</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
+	<!-- ############################################################################################################################## -->
+	<!-- 버전 요약 !!!!!! -->
+	<!-- pom.xml 파일내에서 사용하기 위한 속성 값들 -->
+	<!-- 선언한 변수명을 내부에서 사용하기 위함이며 주로 버전정보들을 담고 있다. -->
 	<properties>
+	
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.1.1.RELEASE</org.springframework-version>
+		
+		<hibernate-version>5.3.7.Final</hibernate-version>
+		<mysql-version>8.0.12</mysql-version>
+		<tomcat-version>9.0.12</tomcat-version>
+		
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		
 	</properties>
-	<!-- <properties>
-		<java-version>1.8</java-version>
-		<org.springframework-version>4.0.2.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
-		<org.slf4j-version>1.6.6</org.slf4j-version>
-	</properties> -->
+	
+	<!-- ############################################################################################################################## -->
+	<!-- dependencies -->
 	<dependencies>
-	<!-- 하이버네이트 by maven XML -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-agroal</artifactId>
-			<version>5.3.7.Final</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-		    <groupId>mysql</groupId> 
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.12</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.apache.tomcat</groupId>
-		    <artifactId>tomcat-dbcp</artifactId>
-		    <version>9.0.1</version>
-		</dependency>
-		
-		<!-- <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.3.7.Final</version>
-			<type>pom</type>
-		</dependency> -->
-		<!-- Spring -->
+	
+	<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -58,12 +43,86 @@
 				 </exclusion>
 			</exclusions>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- JDBC를 직접 사용하여 DB CRUD 하기 위한... ORM 사용하니깐 없어도 된다. -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 스프링 dbcp 와 commonDBCP -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 하이버네이트 by maven XML -->
+		<!-- hibernate : orm framwork -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-version}</version>
+			<type>pom</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-agroal</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		
+		<!-- JDBC 드라이버 - mysql 커넥터j -->
+		<dependency>
+		    <groupId>mysql</groupId> 
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>${mysql-version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-dbcp</artifactId>
+		    <version>${tomcat-version}</version>
+		</dependency>
+		
+		<!-- common-dbcp : db 커넥션풀 프레임웍 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.1</version>
+		</dependency>
+		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -89,6 +148,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -134,6 +194,7 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>

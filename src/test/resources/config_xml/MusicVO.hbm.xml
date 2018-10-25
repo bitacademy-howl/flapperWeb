@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018. 10. 17 ???? 1:17:22 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="com.flapper.stark.model">
+    <class name="MusicVO" table="Music_table">
+        <id name="musicID">
+            <column name="Music_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="albumID">
+            <column name="Album_ID" />
+        </property>
+        <property name="musicTitle">
+            <column name="Music_title" />
+        </property>
+        <property name="genre">
+            <column name="GENRE" />
+        </property>
+        <property name="hash_tags">
+            <column name="HASH_TAGS" />
+        </property>
+        <property name="lyrics">
+            <column name="LYRICS" />
+        </property>
+        <property name="musicNode">
+            <column name="Music_Node" />
+        </property>
+        <property name="composerID">
+            <column name="Composer_ID" />
+        </property>
+        <property name="lyricistID">
+            <column name="Lyricist_ID" />
+        </property>
+    </class>
+</hibernate-mapping>
